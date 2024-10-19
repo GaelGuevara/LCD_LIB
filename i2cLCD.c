@@ -56,5 +56,8 @@ void LCD_setCursor(int row, int col){
 }
 void LCD_createChar(uint8_t nByte, uint8_t nuevoCaracter[]){
     nByte &= 0x7;
-    
+    LCD_sendCmd(0x40 | (nByte << 3)); 
+    for (int i = 0; i < 8; i++) {
+        LCD_write(charmap[i]);
+    }
 }
